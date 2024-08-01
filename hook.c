@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:24:13 by irazafim          #+#    #+#             */
-/*   Updated: 2024/07/16 15:30:20 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:00:22 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ static void	move_left(t_data *data)
 		return ;
 	if (data->map[data->pos_pers->y][data->pos_pers->x - 1] == 'C')
 		(data->nb_collectible)--;
+	(data->nb_moov)++;
 	move(data->map, 'l', *(data->pos_pers));
 	(data->pos_pers->x)--;
+	ft_putnbr_fd(data->nb_moov, 1);
+	ft_putstr_fd(" mouvement\n", 1);
 }
 
 static void	move_right(t_data *data)
@@ -31,6 +34,8 @@ static void	move_right(t_data *data)
 	(data->nb_moov)++;
 	move(data->map, 'r', *(data->pos_pers));
 	(data->pos_pers->x)++;
+	ft_putnbr_fd(data->nb_moov, 1);
+	ft_putstr_fd(" mouvement\n", 1);
 }
 
 static void	move_up(t_data *data)
@@ -42,6 +47,8 @@ static void	move_up(t_data *data)
 	(data->nb_moov)++;
 	move(data->map, 'u', *(data->pos_pers));
 	(data->pos_pers->y)--;
+	ft_putnbr_fd(data->nb_moov, 1);
+	ft_putstr_fd(" mouvement\n", 1);
 }
 
 static void	move_down(t_data *data)
@@ -53,6 +60,8 @@ static void	move_down(t_data *data)
 	move(data->map, 'd', *(data->pos_pers));
 	(data->nb_moov)++;
 	(data->pos_pers->y)++;
+	ft_putnbr_fd(data->nb_moov, 1);
+	ft_putstr_fd(" mouvement\n", 1);
 }
 
 int	key_press(int keycode, void *param)

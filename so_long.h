@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/07/16 15:40:36 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:49:20 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,8 @@ int		ft_strlen(char *s);
 int		invalid_move(int x, int y, char **map);
 void	ft_putstr(char *s);
 void	ft_putnbr(int nb);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		valid_map(char **map);
+
 #endif

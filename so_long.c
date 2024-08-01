@@ -6,12 +6,13 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:06 by irazafim          #+#    #+#             */
-/*   Updated: 2024/07/16 15:42:37 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:04:09 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <X11/keysym.h>
+#include <stdio.h>
 
 void	mtoa(char ***arr, int lines, int col, char *buf)
 {
@@ -99,13 +100,14 @@ int	main(void)
 	t_data	mlx;
 
 	mlx.mlx = mlx_init();
-	fd = open("carte3.ber", O_RDONLY);
+	fd = open("invalidmap.ber", O_RDONLY);
 	mlx.img[0] = img_return(PLAYER, &mlx);
 	mlx.img[1] = img_return(WALL, &mlx);
 	mlx.img[2] = img_return(COLLECTIBLE, &mlx);
 	mlx.img[3] = img_return(EXIT, &mlx);
 	mlx.img[4] = img_return(BACKGROUND, &mlx);
 	mlx.map = count_lines_map(fd);
+	printf("----------------------------\nmap validation : %d\n------------------------", valid_map(mlx.map));
 	mlx.nb_collectible = sum_collectible(&mlx);
 	mlx.nb_moov = 0;
 	mlx.win = mlx_new_window(mlx.mlx,
