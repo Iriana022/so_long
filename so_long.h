@@ -44,7 +44,7 @@ void	free_array_image(int size, t_data *mlx);
 int		on_destroy(t_data *data);
 int		ft_len(char **s);
 int		ft_strlen(char *s);
-void	move(char **map, char direction, t_coord pos);
+void	move(char **map, char direction, t_coord pos, int *found_exit);
 int		invalid_move(int x, int y, char **map);
 void	put_pos(char **matrix_map, t_data mlx);
 int		key_press(int keycode, void *param);

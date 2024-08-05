@@ -11,4 +11,9 @@ $(NAME):
 	$(CC) -g -o $(NAME) $(SRC) -I$(libx) -L$(libx) -lmlx -lX11 -lXext -lm
 
 clean:
+	rm -rf *.o
+
+fclean: clean
 	rm -rf $(NAME)
+
+re: fclean all

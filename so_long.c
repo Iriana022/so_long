@@ -107,7 +107,6 @@ int	main(void)
 	mlx.img[3] = img_return(EXIT, &mlx);
 	mlx.img[4] = img_return(BACKGROUND, &mlx);
 	mlx.map = count_lines_map(fd);
-	printf("----------------------------\nmap validation : %d\n------------------------", valid_map(mlx.map));
 	mlx.nb_collectible = sum_collectible(&mlx);
 	mlx.nb_moov = 0;
 	mlx.win = mlx_new_window(mlx.mlx,
@@ -116,6 +115,5 @@ int	main(void)
 	mlx.pos_pers = catch_pos(mlx.map);
 	mlx_hook(mlx.win, DestroyNotify, StructureNotifyMask, &close_window, &mlx);
 	mlx_key_hook(mlx.win, key_press, &mlx);
-	ft_putnbr(mlx.nb_moov);
 	mlx_loop(mlx.mlx);
 }

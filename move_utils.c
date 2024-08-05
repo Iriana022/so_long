@@ -12,11 +12,17 @@
 
 #include "so_long.h"
 
-void	move(char **map, char direction, t_coord pos)
+void	move(char **map, char direction, t_coord pos, int *found_exit)
 {
 	if (direction == 'l')
 	{
-		map[pos.y][pos.x] = '0';
+		if (*found_exit == 1)
+		{
+			map[pos.y][pos.x] = 'E';
+			*found_exit = 0;
+		}
+		else
+			map[pos.y][pos.x] = '0';
 		map[pos.y][pos.x - 1] = 'P';
 	}
 	else if (direction == 'r')
