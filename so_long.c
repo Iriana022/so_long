@@ -93,6 +93,15 @@ char	**count_lines_map(int fd)
 	mtoa(&arr, lines, (i - 1) / lines, buf);
 	return (arr);
 }
+/*just for debug*/
+void print_debug(char **a)
+{
+	for(int i = 0; i < ft_len(a); i++){
+		for(int j = 0; j < ft_strlen(a[0]); j++)
+			printf("%c", a[i][j]);
+		printf("\n");
+	}
+}
 
 int	main(void)
 {
@@ -113,6 +122,11 @@ int	main(void)
 			48 * ft_strlen(mlx.map[0]), 48 * ft_len(mlx.map), "solong");
 	put_pos(mlx.map, mlx);
 	mlx.pos_pers = catch_pos(mlx.map);
+	/*just for debug*/
+	char **cp = arr_dup(mlx.map);
+	flood_fill(cp, *mlx.pos_pers);
+	print_debug(cp);
+	/*******////*/
 	mlx_hook(mlx.win, DestroyNotify, StructureNotifyMask, &close_window, &mlx);
 	mlx_key_hook(mlx.win, key_press, &mlx);
 	mlx_loop(mlx.mlx);

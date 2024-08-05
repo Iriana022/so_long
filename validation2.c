@@ -12,76 +12,46 @@
 
 #include "so_long.h"
 
-char **array_dup(char **map, int size_h, int size_l)
+void	fill(char **map, t_coord curr)
 {
-	int		i;
-	int		j;
-	char	**array_ret;
+	if (curr.y <= 0 || curr.y >= ft_len(map) - 1 ||
+	curr.x <= 0 || curr.x >= ft_strlen(map[0]) - 1 ||
+	map[curr.y][curr.x] == '1' || map[curr.y][curr.x] == '#')
+		return;
+	map[curr.y][curr.x] = '#';
+	fill(map, (t_coord){curr.x - 1, curr.y});
+	fill(map, (t_coord){curr.x + 1, curr.y});
+	fill(map, (t_coord){curr.x, curr.y - 1});
+	fill(map, (t_coord){curr.x, curr.y + 1});
+}
+
+void	flood_fill(char **map, t_coord begin)
+{
+	fill(map, begin);
+}
+
+char	**arr_dup(char **map)
+{
+	int	i;
+	int	j;
+	char	**ret;
 
 	i = 0;
-	j = 0;
-	**array_ret = (char **)malloc(sizeof(char *) * size_h);
-	if (!array_ret)
+	ret = (char **)malloc(sizeof(char *) * (ft_len(map) + 1));
+	if (!ret)
 		return (NULL);
-	while (i < size_h)
+	while (i < ft_len(map))
 	{
-		array_ret[i] = (char *)malloc(sizeof(char) * size_l);
-		if (!array_ret[i])
-		{
-			while (j < i)
-			{
-				free(array_ret[j]);
-				j++;
-			}
-			free(array_ret);
-		}
+		ret[i] = (char *)malloc(sizeof(char) * (ft_strlen(map[0]) + 1));
 		j = 0;
-		while (j < size_l)
+		while (j < ft_strlen(map[0]))
 		{
-			array_ret[i][j] = '0';
+			ret[i][j] = map[i][j];
 			j++;
 		}
+		ret[i][j] = '\0';
 		i++;
 	}
-	return (array_ret);
+	ret[i] = NULL;
+	return (ret);
 }
-
-void	fill(char **tab, t_coord size, t_coord cur, char tofill)
-{
-	if (cur.x < 0 || cur.x >= size.x || cur.y < 0 || cur.y >= size.y || tab[cur.y][cur.x] != tofill)
-		return;
-	tab[cur.y][cur.x] = 'P';
-	fill(tab, size, (t_coord){cur.x - 1, cur.y}, to_fill);
-	fill(tab, size, (t_coord){cur.x + 1, cur.y}, to_fill);
-	fill(tab, size, (t_coord){cur.x, cur.y - 1}, to_fill);
-	fill(tab, size, (t_coord){cur.x, cur.y + 1}, to_fill);
-}
-
-void debug_map(char **map)
-{
-	int i = 0;
-	int j = 0;
-	while(i < ft_len(map))
-	{
-		j = 0;
-		while (j < ft_strlen(map))
-		{
-			printf("%c", map[i][j]);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	flood_fill(char **map, t_coord size, t_coord begin)
-{
-	char	**cpy_map;
-
-	cpy_map = array_dup(map, ft_len(map), ft_strlen(map[0]));
-	size.x = ft_strlen(map[0]);
-	size.y = ft_len(map);
-	fill(map, size, map.pos_pers, 'X');
-	debug_map(cpy_map);
-}
-
-

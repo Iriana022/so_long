@@ -59,6 +59,6 @@ void	ft_putnbr(int nb);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		valid_map(char **map);
-void    flood_fill(char **map, t_coord size, t_coord begin);
-
+char    **arr_dup(char **map);
+void    flood_fill(char **map, t_coord begin);
 #endif
