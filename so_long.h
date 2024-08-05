@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/01 09:49:20 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:35:28 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	ft_putnbr(int nb);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		valid_map(char **map);
+void    flood_fill(char **map, t_coord size, t_coord begin);
 
 #endif
