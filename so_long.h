@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/05 12:35:28 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:52:00 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 	char	**map;
 	void	*img[5];
 	t_coord	*pos_pers;
+	t_coord *pos_exit;
 	int		nb_collectible;
 	int		nb_moov;
 }	t_data;
@@ -44,7 +45,7 @@ void	free_array_image(int size, t_data *mlx);
 int		on_destroy(t_data *data);
 int		ft_len(char **s);
 int		ft_strlen(char *s);
-void	move(char **map, char direction, t_coord pos, int *found_exit);
+void	move(t_data mlx, char direction, t_coord pos);
 int		invalid_move(int x, int y, char **map);
 void	put_pos(char **matrix_map, t_data mlx);
 int		key_press(int keycode, void *param);
@@ -61,4 +62,6 @@ void	ft_putnbr_fd(int n, int fd);
 int		valid_map(char **map);
 char    **arr_dup(char **map);
 void    flood_fill(char **map, t_coord begin);
+int		road_validate(char **map);
+t_coord *catch_posE(char **map);
 #endif

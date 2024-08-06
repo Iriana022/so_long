@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:06 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/01 10:04:09 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:52:29 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,15 @@ int	main(void)
 			48 * ft_strlen(mlx.map[0]), 48 * ft_len(mlx.map), "solong");
 	put_pos(mlx.map, mlx);
 	mlx.pos_pers = catch_pos(mlx.map);
+	mlx.pos_exit = catch_posE(mlx.map);
 	/*just for debug*/
 	char **cp = arr_dup(mlx.map);
 	flood_fill(cp, *mlx.pos_pers);
 	print_debug(cp);
+	printf("%d\n", road_validate(mlx.map));
+	if(!road_validate(cp))
+		ft_putstr_fd("map not valid", 1);
+	free_double(cp, ft_len(cp));
 	/*******////*/
 	mlx_hook(mlx.win, DestroyNotify, StructureNotifyMask, &close_window, &mlx);
 	mlx_key_hook(mlx.win, key_press, &mlx);

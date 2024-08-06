@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:34:34 by irazafim          #+#    #+#             */
-/*   Updated: 2024/07/16 15:46:48 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/06 10:17:21 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,32 @@ int	ft_strlen(char *s)
 		i++;
 	return (i);
 }
+
+t_coord	*catch_posE(char **map)
+{
+	int		i;
+	int		j;
+	t_coord	*coord;
+
+	i = -1;
+	coord = malloc(sizeof(t_coord));
+	if (NULL == coord)
+		return (NULL);
+	coord->x = 0;
+	coord->y = 0;
+	while (map[++i] != NULL)
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'E')
+			{
+				coord->x = j;
+				coord->y = i;
+				return (coord);
+			}
+		}
+	}
+	return (coord);
+}
+

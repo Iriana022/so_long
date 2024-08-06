@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 07:11:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/05 12:40:13 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:18:13 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,24 @@ char	**arr_dup(char **map)
 	}
 	ret[i] = NULL;
 	return (ret);
+}
+
+int	road_validate(char **map)
+{
+	int		i;
+	int		j;
+	
+	i = 0;
+	while (i < ft_len(map))
+	{
+		j = 0;
+		while (j < ft_strlen(map[0]))
+		{
+			if (map[i][j] == 'E' || map[i][j] == 'C')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

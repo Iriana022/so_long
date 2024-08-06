@@ -6,39 +6,33 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:35 by irazafim          #+#    #+#             */
-/*   Updated: 2024/07/16 14:36:42 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:51:47 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move(char **map, char direction, t_coord pos, int *found_exit)
+void	move(t_data mlx, char direction, t_coord pos)
 {
 	if (direction == 'l')
 	{
-		if (*found_exit == 1)
-		{
-			map[pos.y][pos.x] = 'E';
-			*found_exit = 0;
-		}
-		else
-			map[pos.y][pos.x] = '0';
-		map[pos.y][pos.x - 1] = 'P';
+		mlx.map[pos.y][pos.x] = '0';
+		mlx.map[pos.y][pos.x - 1] = 'P';
 	}
 	else if (direction == 'r')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y][pos.x + 1] = 'P';
+		mlx.map[pos.y][pos.x] = '0';
+		mlx.map[pos.y][pos.x + 1] = 'P';
 	}
 	else if (direction == 'u')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y - 1][pos.x] = 'P';
+		mlx.map[pos.y][pos.x] = '0';
+		mlx.map[pos.y - 1][pos.x] = 'P';
 	}
 	else if (direction == 'd')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y + 1][pos.x] = 'P';
+		mlx.map[pos.y][pos.x] = '0';
+		mlx.map[pos.y + 1][pos.x] = 'P';
 	}
 }
 
