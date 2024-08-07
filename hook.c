@@ -23,6 +23,8 @@ static void	move_left(t_data *data)
 	(data->pos_pers->x)--;
 	ft_putnbr_fd(data->nb_moov, 1);
 	ft_putstr_fd(" mouvement\n", 1);
+	if (data->nb_collectible == 0)
+		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
 }
 
 static void	move_right(t_data *data)
@@ -36,6 +38,8 @@ static void	move_right(t_data *data)
 	(data->pos_pers->x)++;
 	ft_putnbr_fd(data->nb_moov, 1);
 	ft_putstr_fd(" mouvement\n", 1);
+	if (data->nb_collectible == 0)
+		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
 }
 
 static void	move_up(t_data *data)
@@ -49,6 +53,8 @@ static void	move_up(t_data *data)
 	(data->pos_pers->y)--;
 	ft_putnbr_fd(data->nb_moov, 1);
 	ft_putstr_fd(" mouvement\n", 1);
+	if (data->nb_collectible == 0)
+		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
 }
 
 static void	move_down(t_data *data)
@@ -62,6 +68,8 @@ static void	move_down(t_data *data)
 	(data->pos_pers->y)++;
 	ft_putnbr_fd(data->nb_moov, 1);
 	ft_putstr_fd(" mouvement\n", 1);
+	if (data->nb_collectible == 0)
+		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
 }
 
 int	key_press(int keycode, void *param)
