@@ -25,6 +25,11 @@ static void	move_left(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
+	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	{
+		ft_putstr_fd("Game over!\n", 1);
+		on_destroy(data);
+	}
 }
 
 static void	move_right(t_data *data)
@@ -40,6 +45,11 @@ static void	move_right(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
+	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	{
+		ft_putstr_fd("Game over!\n", 1);
+		on_destroy(data);
+	}
 }
 
 static void	move_up(t_data *data)
@@ -55,6 +65,11 @@ static void	move_up(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
+	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	{
+		ft_putstr_fd("Game over!\n", 1);
+		on_destroy(data);
+	}
 }
 
 static void	move_down(t_data *data)
@@ -70,6 +85,11 @@ static void	move_down(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
+	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	{
+		ft_putstr_fd("Game over!\n", 1);
+		on_destroy(data);
+	}
 }
 
 int	key_press(int keycode, void *param)

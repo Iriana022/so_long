@@ -45,6 +45,7 @@ int	on_destroy(t_data *data)
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
 	free_double(data->map, ft_len(data->map));
+	free(data->pos_exit);
 	exit(0);
 	return (0);
 }
