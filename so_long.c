@@ -127,7 +127,7 @@ int	main(void)
 	char **cp = arr_dup(mlx.map);
 	flood_fill(cp, *mlx.pos_pers);
 	print_debug(cp);
-	printf("%d\n", road_validate(mlx.map));
+	//printf("%d\n", road_validate(cp));
 	if(!road_validate(cp))
 		ft_putstr_fd("map not valid", 1);
 	free_double(cp, ft_len(cp));
