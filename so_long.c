@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:06 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/08 11:55:02 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:50:47 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ t_coord	*catch_pos(char **map)
 	coord->y = 0;
 	while (map[++i] != NULL)
 	{
-		j = -1;
-		while (map[i][++j])
+		j = 0;
+		while (map[i][j])
 		{
 			if (map[i][j] == 'P')
 			{
@@ -62,6 +62,7 @@ t_coord	*catch_pos(char **map)
 				coord->y = i;
 				return (coord);
 			}
+			j++;
 		}
 	}
 	return (coord);
@@ -81,6 +82,8 @@ char	**count_lines_map(int fd)
 	while (read_bytes > 0)
 	{
 		read_bytes = read(fd, buf, BUFFER_SIZE);
+		if (read_bytes == -1)
+			return (NULL);
 		while (i < read_bytes)
 		{
 			if (buf[i] == '\n')
@@ -92,15 +95,6 @@ char	**count_lines_map(int fd)
 	}
 	mtoa(&arr, lines, (i - 1) / lines, buf);
 	return (arr);
-}
-/*just for debug*/
-void print_debug(char **a)
-{
-	for(int i = 0; i < ft_len(a); i++){
-		for(int j = 0; j < ft_strlen(a[0]); j++)
-			printf("%c", a[i][j]);
-		printf("\n");
-	}
 }
 
 int	main(int argc, char **argv)
@@ -118,6 +112,8 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Invalid parameter\n", 1);
 		exit(0);
 	}
+	if (fd == -1)
+		exit(0);
 	mlx.map = count_lines_map(fd);
 	cp = arr_dup(mlx.map);
 	mlx.pos_pers = catch_pos(mlx.map);
