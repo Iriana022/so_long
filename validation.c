@@ -6,15 +6,33 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:33:59 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/01 11:09:47 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:17:52 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_correct_size(char **map)
+int	is_notstrange_char(char **map)
 {
-	return (ft_len(map) >= 3) && (ft_strlen(*map) >= 3);
+	int	i;
+	int	j;
+
+	i = 1;
+	while (map[i] != NULL)
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'E' || map[i][j] == 'C'
+				|| map[i][j] == 'P' || map[i][j] == '1'
+				|| map[i][j] == '0')
+				j++;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
 int is_rectangular(char **map)
@@ -92,5 +110,5 @@ int	is_wall_ext(char **map)
 
 int valid_map(char **map)
 {
-	return (is_correct_size(map) && is_rectangular(map) && is_not_double(map) && is_wall_ext(map));
+	return (is_notstrange_char(map) && is_rectangular(map) && is_not_double(map) && is_wall_ext(map));
 }

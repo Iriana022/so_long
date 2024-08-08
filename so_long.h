@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/06 12:52:00 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:19:34 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,7 @@ char    **arr_dup(char **map);
 void    flood_fill(char **map, t_coord begin);
 int		road_validate(char **map);
 t_coord *catch_posE(char **map);
+void	img_init(t_data *data);
+void	validation_check(t_data *data, char **cp);
+int		is_dotber(char *name);
 #endif
