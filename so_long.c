@@ -39,6 +39,64 @@ void	mtoa(char ***arr, int lines, int col, char *buf)
 	(*arr)[lines] = NULL;
 }
 
+int	strchr_and_count(char *str, int c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+int count_lines(int fd)
+{
+	int	lines;
+	int	read_bytes;
+	int	i;
+	char	buf[BUFFER_SIZE];
+	
+	read_bytes = 1;
+	count = 0;
+	while (read_bytes)
+	{
+		read_bytes = read(fd, buf, BUFFER_SIZE);
+		buf[read_bytes] = '\0';
+		lines += strchr_and_count(buffer, '\n');
+	}
+	return (lines);
+}
+
+int count_columns(int fd)
+{
+	int	read_bytes;
+	int	i;
+	char	buf[BUFFER_SIZE];
+	int	col;
+
+	read_bytes = 1;
+	col = 0;
+	while (read_bytes)
+	{
+		read_bytes = read(fd, buf, BUFFER_SIZE);
+		buf[read_bytes] = '\0';
+		i = 0;
+		while (buf[i] && buf[i] != '\n')
+			i++;
+		col += i;
+		if (buf[i] == '\n')
+			break;
+	}
+	close(fd);
+	return (col);
+}
+
 t_coord	*catch_pos(char **map)
 {
 	int		i;
