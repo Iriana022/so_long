@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:33:59 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/08 10:17:52 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:27:32 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_notstrange_char(char **map)
 		{
 			if (map[i][j] == 'E' || map[i][j] == 'C'
 				|| map[i][j] == 'P' || map[i][j] == '1'
-				|| map[i][j] == '0')
+				|| map[i][j] == '0' || map[i][j] == '\n')
 				j++;
 			else
 				return (0);

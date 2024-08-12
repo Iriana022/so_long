@@ -6,7 +6,7 @@
 /*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:06 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/08 13:50:47 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:53:20 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ int count_lines(int fd)
 {
 	int	lines;
 	int	read_bytes;
-	int	i;
 	char	buf[BUFFER_SIZE];
 	
 	read_bytes = 1;
-	count = 0;
+	lines = 0;
 	while (read_bytes)
 	{
 		read_bytes = read(fd, buf, BUFFER_SIZE);
 		buf[read_bytes] = '\0';
-		lines += strchr_and_count(buffer, '\n');
+		lines += strchr_and_count(buf, '\n');
 	}
+	close(fd);
 	return (lines);
 }
 
@@ -126,6 +126,36 @@ t_coord	*catch_pos(char **map)
 	return (coord);
 }
 
+void check_col_map(char *buf, int fd)
+{
+	int	i;
+	int	prev_i;
+	int	col;
+
+	i = 0;
+	col = 0;
+	prev_i = 0;
+	col = count_columns(fd);
+/*	while (buf[col] != '\n')
+		col++;
+	printf("col = %d\n", col);*/
+	while (buf[i])
+	{
+		if (buf[i] == '\n' || buf[i] == '\0')
+		{
+			printf("i  = %d\n", i);
+			if (i - prev_i != col)
+			{
+				ft_putstr_fd("Carte non valide" ,1);
+				exit(1);
+			}	
+			else
+				prev_i = i + 1;
+		}
+		i++;
+	}
+}
+
 char	**count_lines_map(int fd)
 {
 	int		read_bytes;
@@ -137,6 +167,11 @@ char	**count_lines_map(int fd)
 	lines = 0;
 	read_bytes = 1;
 	i = 0;
+	/*if (!count_lines(fd) && !count_columns(fd))
+	{
+		ft_putstr_fd("carte invalide\n", 1);
+		exit(1);
+	}*/
 	while (read_bytes > 0)
 	{
 		read_bytes = read(fd, buf, BUFFER_SIZE);
@@ -150,6 +185,13 @@ char	**count_lines_map(int fd)
 			}
 			i++;
 		}
+	}
+	printf("test");
+	check_col_map(buf, fd);
+	if (!lines)
+	{
+		ft_putstr_fd("Carte non valide\n", 1);
+		exit(1);
 	}
 	mtoa(&arr, lines, (i - 1) / lines, buf);
 	return (arr);
