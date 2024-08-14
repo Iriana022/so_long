@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:24:13 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/06 12:51:09 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:48:33 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	move_left(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
-	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	if (data->nb_collectible == 0
+		&& data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
 	{
 		ft_putstr_fd("Game over!\n", 1);
 		on_destroy(data);
@@ -45,7 +46,8 @@ static void	move_right(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
-	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	if (data->nb_collectible == 0
+		&& data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
 	{
 		ft_putstr_fd("Game over!\n", 1);
 		on_destroy(data);
@@ -65,7 +67,8 @@ static void	move_up(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
-	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	if (data->nb_collectible == 0
+		&& data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
 	{
 		ft_putstr_fd("Game over!\n", 1);
 		on_destroy(data);
@@ -85,7 +88,8 @@ static void	move_down(t_data *data)
 	ft_putstr_fd(" mouvement\n", 1);
 	if (data->nb_collectible == 0)
 		data->map[data->pos_exit->y][data->pos_exit->x] = 'E';
-	if (data->nb_collectible == 0 && data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
+	if (data->nb_collectible == 0
+		&& data->map[data->pos_pers->y][data->pos_pers->x] == 'E')
 	{
 		ft_putstr_fd("Game over!\n", 1);
 		on_destroy(data);
@@ -99,13 +103,13 @@ int	key_press(int keycode, void *param)
 	data = (t_data *)param;
 	if (keycode == XK_Escape)
 		on_destroy(data);
-	else if (keycode == XK_d)
+	else if (keycode == XK_d || keycode == XK_Right)
 		move_right(data);
-	else if (keycode == XK_a)
+	else if (keycode == XK_a || keycode == XK_Left)
 		move_left(data);
-	else if (keycode == XK_w)
+	else if (keycode == XK_w || keycode == XK_Up)
 		move_up(data);
-	else if (keycode == XK_s)
+	else if (keycode == XK_s || keycode == XK_Down)
 		move_down(data);
 	put_pos(data->map, *data);
 	return (0);

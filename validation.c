@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:33:59 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/12 10:27:32 by event            ###   ########.fr       */
+/*   Updated: 2024/08/14 12:27:45 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	is_notstrange_char(char **map)
 	return (1);
 }
 
-int is_rectangular(char **map)
+int	is_rectangular(char **map)
 {
 	int	col;
 	int	i;
 	int	size;
-	
+
 	size = ft_len(map);
 	col = ft_strlen(map[0]);
 	i = 1;
@@ -53,23 +53,22 @@ int is_rectangular(char **map)
 	return (1);
 }
 
-int is_not_double(char **map)
+int	is_not_double(char **map)
 {
 	int	i;
-	int j;
-	int count_e;
+	int	j;
+	int	count_e;
 	int	count_p;
 	int	count_c;
 
 	count_e = 0;
 	count_p = 0;
 	count_c = 0;
-	i = 0;
-	j = 0;
-	while (map[i] != NULL)
+	i = -1;
+	while (map[++i] != NULL)
 	{
-		j = 0;
-		while (map[i][j] != '\0')
+		j = -1;
+		while (map[i][++j] != '\0')
 		{
 			if (map[i][j] == 'E')
 				count_e++;
@@ -77,9 +76,7 @@ int is_not_double(char **map)
 				count_p++;
 			if (map[i][j] == 'C')
 				count_c++;
-			j++;
 		}
-		i++;
 	}
 	return (count_e == 1 && count_p == 1 && count_c >= 1);
 }
@@ -108,7 +105,8 @@ int	is_wall_ext(char **map)
 	return (1);
 }
 
-int valid_map(char **map)
+int	valid_map(char **map)
 {
-	return (is_notstrange_char(map) && is_rectangular(map) && is_not_double(map) && is_wall_ext(map));
+	return (is_notstrange_char(map) && is_rectangular(map)
+		&& is_not_double(map) && is_wall_ext(map));
 }

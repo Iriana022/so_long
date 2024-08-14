@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 07:11:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/06 09:18:13 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:41:35 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	fill(char **map, t_coord curr)
 {
-	if (curr.y <= 0 || curr.y >= ft_len(map) - 1 ||
-	curr.x <= 0 || curr.x >= ft_strlen(map[0]) - 1 ||
-	map[curr.y][curr.x] == '1' || map[curr.y][curr.x] == '#')
-		return;
+	if (curr.y <= 0 || curr.y >= ft_len(map) - 1
+		|| curr.x <= 0 || curr.x >= ft_strlen(map[0]) - 1
+		|| map[curr.y][curr.x] == '1' || map[curr.y][curr.x] == '#')
+		return ;
 	map[curr.y][curr.x] = '#';
 	fill(map, (t_coord){curr.x - 1, curr.y});
 	fill(map, (t_coord){curr.x + 1, curr.y});
@@ -32,8 +32,8 @@ void	flood_fill(char **map, t_coord begin)
 
 char	**arr_dup(char **map)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**ret;
 
 	i = 0;
@@ -60,7 +60,7 @@ int	road_validate(char **map)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (i < ft_len(map))
 	{

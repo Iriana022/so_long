@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:34:34 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/06 10:17:21 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:20:39 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
+	if (s == NULL)
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-t_coord	*catch_posE(char **map)
+t_coord	*catch_pos_e(char **map)
 {
 	int		i;
 	int		j;
@@ -73,4 +75,3 @@ t_coord	*catch_posE(char **map)
 	}
 	return (coord);
 }
-

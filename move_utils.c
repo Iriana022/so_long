@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:52:35 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/06 12:51:47 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:11:28 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,32 +49,17 @@ void	put_img(void *mlx, void *win, void *img, t_coord p)
 void	put_pos(char **matrix_map, t_data mlx)
 {
 	t_coord	point;
-	int		x;
-	int		y;
+	t_coord	curr_pos;
 
-	y = -1;
-	while (matrix_map[++y] != NULL)
+	curr_pos.y = -1;
+	while (matrix_map[++curr_pos.y] != NULL)
 	{
-		x = -1;
-		while (matrix_map[y][++x] != '\0')
+		curr_pos.x = -1;
+		while (matrix_map[curr_pos.y][++curr_pos.x] != '\0')
 		{
-			point.x = x * 48;
-			point.y = y * 48;
-			if (matrix_map[y][x] == 'P')
-				put_img(mlx.mlx, mlx.win, mlx.img[0], point);
-			else if (matrix_map[y][x] == '1')
-				put_img(mlx.mlx, mlx.win, mlx.img[1], point);
-			else if (matrix_map[y][x] == 'C')
-				put_img(mlx.mlx, mlx.win, mlx.img[2], point);
-			else if (matrix_map[y][x] == 'E')
-			{
-				if (mlx.nb_collectible == 0)
-					put_img(mlx.mlx, mlx.win, mlx.img[3], point);
-				else
-					put_img(mlx.mlx, mlx.win, mlx.img[4], point);
-			}
-			else if (matrix_map[y][x] == '0')
-				put_img(mlx.mlx, mlx.win, mlx.img[4], point);
+			point.x = curr_pos.x * 48;
+			point.y = curr_pos.y * 48;
+			draw_map(matrix_map, mlx, point, curr_pos);
 		}
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/08 10:19:34 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:19:06 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,31 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <X11/keysym.h>
-# define BUFFER_SIZE 1024
-# define PLAYER "./assets/Terrain/characters.xpm"
-# define WALL "./assets/Terrain/wall.xpm"
-# define COLLECTIBLE "./assets/Terrain/strawberry.xpm"
-# define EXIT "./assets/Terrain/exit.xpm"
-# define BACKGROUND "./assets/Terrain/bg.xpm"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+# ifndef PLAYER
+#  define PLAYER "./assets/Terrain/characters.xpm"
+# endif
+# ifndef WALL
+#  define WALL "./assets/Terrain/wall.xpm"
+# endif
+# ifndef COLLECTIBLE
+#  define COLLECTIBLE "./assets/Terrain/strawberry.xpm"
+# endif
+# ifndef EXIT
+#  define EXIT "./assets/Terrain/exit.xpm"
+# endif
+# ifndef BACKGROUND
+#  define BACKGROUND "./assets/Terrain/bg.xpm"
+# endif
 
 typedef struct s_coord
 {
 	int	x;
 	int	y;
 }	t_coord;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -36,10 +49,11 @@ typedef struct s_data
 	char	**map;
 	void	*img[5];
 	t_coord	*pos_pers;
-	t_coord *pos_exit;
+	t_coord	*pos_exit;
 	int		nb_collectible;
 	int		nb_moov;
 }	t_data;
+
 void	free_double(char **arr, int size);
 void	free_array_image(int size, t_data *mlx);
 int		on_destroy(t_data *data);
@@ -60,11 +74,16 @@ void	ft_putnbr(int nb);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		valid_map(char **map);
-char    **arr_dup(char **map);
-void    flood_fill(char **map, t_coord begin);
+char	**arr_dup(char **map);
+void	flood_fill(char **map, t_coord begin);
 int		road_validate(char **map);
-t_coord *catch_posE(char **map);
+t_coord	*catch_pos_e(char **map);
 void	img_init(t_data *data);
 void	validation_check(t_data *data, char **cp);
 int		is_dotber(char *name);
+void	ft_exit(char *msg, int code);
+void	validate_lines(int *lines, char *buf, int *col);
+void	init_array(char *buf);
+void	draw_map(char **map, t_data mlx, t_coord point, t_coord curr_pos);
+void	put_img(void *mlx, void *win, void *img, t_coord p);
 #endif
