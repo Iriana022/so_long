@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   manage_malloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 09:02:34 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 12:35:01 by irazafim         ###   ########.fr       */
+/*   Created: 2024/08/14 13:38:20 by irazafim          #+#    #+#             */
+/*   Updated: 2024/08/14 13:43:00 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include "so_long.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	malloc_protect_dbptr(char **p)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if (!p)
 	{
-		write(fd, &s[i], 1);
-		i++;
+		p = NULL;
+		exit(1);
+	}
+}
+
+void	malloc_protect(char ***p, int size)
+{
+	if (!p)
+	{
+		free_double(*p, size);
+		**p = NULL;
+		exit(1);
 	}
 }

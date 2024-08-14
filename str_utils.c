@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irazafim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:33:28 by irazafim          #+#    #+#             */
-/*   Updated: 2024/07/16 15:46:13 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:36:57 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_putstr(char *s)
 {
 	int	i;
 	int	len;
-	
-	len =  ft_strlen(s);
+
+	len = ft_strlen(s);
 	i = 0;
 	while (i < len)
 	{

@@ -6,7 +6,7 @@
 /*   By: irazafim <irazafim@studend.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:06 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 12:19:23 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:41:42 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ void	mtoa(char ***arr, int lines, int col, char *buf)
 	i = 0;
 	j = 0;
 	*arr = (char **)malloc(sizeof(char *) * (lines + 1));
+	malloc_protect_dbptr(*arr);
 	while (i < lines)
 	{
 		(*arr)[i] = (char *)malloc(sizeof(char) * (col + 1));
+		malloc_protect(arr, i);
 		k = 0;
 		while (k < col + 1)
 		{
