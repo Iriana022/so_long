@@ -6,7 +6,7 @@
 /*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:38:20 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 13:43:00 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:59:55 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	malloc_protect_dbptr(char **p)
 
 void	malloc_protect(char ***p, int size)
 {
-	if (!p)
+	if (!(**p))
 	{
 		free_double(*p, size);
 		**p = NULL;
