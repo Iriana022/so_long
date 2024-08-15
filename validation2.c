@@ -6,7 +6,7 @@
 /*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 07:11:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 11:41:35 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/15 07:39:54 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,24 @@ char	**arr_dup(char **map)
 	int		j;
 	char	**ret;
 
-	i = 0;
+	i = -1;
 	ret = (char **)malloc(sizeof(char *) * (ft_len(map) + 1));
 	if (!ret)
 		return (NULL);
-	while (i < ft_len(map))
+	while (++i < ft_len(map))
 	{
 		ret[i] = (char *)malloc(sizeof(char) * (ft_strlen(map[0]) + 1));
-		j = 0;
-		while (j < ft_strlen(map[0]))
+		if (!ret[i])
 		{
-			ret[i][j] = map[i][j];
-			j++;
+			while (--i > 0)
+				free(ret[i]);
+			free(ret);
+			return (NULL);
 		}
+		j = -1;
+		while (++j < ft_strlen(map[0]))
+			ret[i][j] = map[i][j];
 		ret[i][j] = '\0';
-		i++;
 	}
 	ret[i] = NULL;
 	return (ret);

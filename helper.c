@@ -6,7 +6,7 @@
 /*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:34:34 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 12:20:39 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/15 07:43:42 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_len(char **s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] != NULL)
 		i++;
 	return (i);

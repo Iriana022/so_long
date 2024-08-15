@@ -6,7 +6,7 @@
 /*   By: irazafim <irazafim@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:30 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 13:41:26 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/15 09:03:58 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	validate_lines(int *lines, char *buf, int *col);
 void	init_array(char *buf);
 void	draw_map(char **map, t_data mlx, t_coord point, t_coord curr_pos);
 void	put_img(void *mlx, void *win, void *img, t_coord p);
-void	malloc_protect_dbptr(char **p);
-void	malloc_protect(char ***p, int size);
+void	malloc_exit(void *ptr);
+void	check_fd(int fd);
+void	check_arg(int arg, char *name, int *fd);
 #endif

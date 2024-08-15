@@ -6,7 +6,7 @@
 /*   By: irazafim <irazafim@studend.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:13:06 by irazafim          #+#    #+#             */
-/*   Updated: 2024/08/14 13:41:42 by irazafim         ###   ########.fr       */
+/*   Updated: 2024/08/15 09:00:11 by irazafim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	mtoa(char ***arr, int lines, int col, char *buf)
 	i = 0;
 	j = 0;
 	*arr = (char **)malloc(sizeof(char *) * (lines + 1));
-	malloc_protect_dbptr(*arr);
+	if (!(*arr))
+		return ;
 	while (i < lines)
 	{
 		(*arr)[i] = (char *)malloc(sizeof(char) * (col + 1));
-		malloc_protect(arr, i);
+		if (!((*arr)[i]))
+			return ;
 		k = 0;
 		while (k < col + 1)
 		{
@@ -47,7 +49,7 @@ t_coord	*catch_pos(char **map)
 
 	i = -1;
 	coord = malloc(sizeof(t_coord));
-	if (NULL == coord)
+	if (!coord)
 		return (NULL);
 	coord->x = 0;
 	coord->y = 0;
@@ -101,18 +103,17 @@ int	main(int argc, char **argv)
 	t_data	mlx;
 	char	**cp;
 
-	if (argc == 2 && is_dotber(argv[1]))
-		fd = open(argv[1], O_RDONLY);
-	else
-		ft_exit("Invalid parameter\n", 1);
-	if (fd == -1)
-		exit(0);
+	check_arg(argc, argv[1], &fd);
+	check_fd(fd);
 	mlx.map = count_lines_map(fd);
+	malloc_exit(mlx.map);
 	cp = arr_dup(mlx.map);
 	mlx.pos_pers = catch_pos(mlx.map);
+	malloc_exit(mlx.pos_pers);
 	validation_check(&mlx, cp);
 	mlx.pos_exit = catch_pos_e(mlx.map);
 	mlx.mlx = mlx_init();
+	malloc_exit(mlx.mlx);
 	img_init(&mlx);
 	mlx.nb_collectible = sum_collectible(&mlx);
 	mlx.nb_moov = 0;
@@ -122,4 +123,5 @@ int	main(int argc, char **argv)
 	mlx_hook(mlx.win, DestroyNotify, StructureNotifyMask, &close_window, &mlx);
 	mlx_key_hook(mlx.win, key_press, &mlx);
 	mlx_loop(mlx.mlx);
+	return (0);
 }
